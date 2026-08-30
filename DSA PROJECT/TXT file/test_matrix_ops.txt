@@ -1,0 +1,52 @@
+// =======================================================================
+// Extended Matrix Operations Bytecode Test
+// Demonstrates: read2m, read2sm, print2m, trans2m, det2m, mul2m, compl2m
+// =======================================================================
+
+// 1. Test read2m and print2m
+// Input:
+// 10 25
+// 20 5
+read2m
+print2m
+
+// 2. Test read2sm, trans2m, and print2m
+// Single-line input (a11 a21 a12 a22): 2 4 3 5 -> matrix [2 3; 4 5]
+// After trans2m: [2 4; 3 5]
+read2sm
+trans2m
+print2m
+
+// 3. Test det2m
+// Matrix [2 3; 4 5] -> determinant: 2*5 - 3*4 = 10 - 12 = -2
+ldc 2
+ldc 3
+ldc 4
+ldc 5
+det2m
+print
+
+// 4. Test mul2m
+// Matrix A = [10 25; 20 5]
+// Matrix B = [2 3; 4 5]
+// Result C = A x B = [120 155; 60 85]
+ldc 10
+ldc 25
+ldc 20
+ldc 5
+ldc 2
+ldc 3
+ldc 4
+ldc 5
+mul2m
+print2m
+
+// 5. Test compl2m
+// Matrix A = [10 25; 20 5], Max = 25
+// Result = [15 0; 5 20]
+ldc 10
+ldc 25
+ldc 20
+ldc 5
+compl2m
+print2m

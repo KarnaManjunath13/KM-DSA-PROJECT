@@ -1,0 +1,13 @@
+ldc 4
+ldc 9
+ldc 8
+ldc 6
+ldc 5
+ldc 12
+ldc 14
+ldc 7
+mul2
+print
+print
+print
+print

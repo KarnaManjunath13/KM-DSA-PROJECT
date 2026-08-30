@@ -1,0 +1,81 @@
+// =======================================================================
+// Task A: Read three integers, find minimum and maximum, and print them
+// =======================================================================
+// Register allocation:
+//   reg 0: first number (x)
+//   reg 1: second number (y)
+//   reg 2: third number (z)
+//   reg 3: minimum value
+//   reg 4: maximum value
+
+// 1. Read three integers and store in local variables
+read
+istore 0
+read
+istore 1
+read
+istore 2
+
+// 2. Initialize min = x (reg 3) and max = x (reg 4)
+iload 0
+istore 3
+iload 0
+istore 4
+
+// 3. Compare y (reg 1) with min (reg 3): if (y - min < 0) min = y
+iload 1
+iload 3
+isub
+iflt update_min_y
+ldc 0
+ifeq check_max_y
+
+update_min_y:
+iload 1
+istore 3
+
+check_max_y:
+// 4. Compare y (reg 1) with max (reg 4): if (y - max > 0) max = y
+iload 1
+iload 4
+isub
+ifgt update_max_y
+ldc 0
+ifeq check_min_z
+
+update_max_y:
+iload 1
+istore 4
+
+check_min_z:
+// 5. Compare z (reg 2) with min (reg 3): if (z - min < 0) min = z
+iload 2
+iload 3
+isub
+iflt update_min_z
+ldc 0
+ifeq check_max_z
+
+update_min_z:
+iload 2
+istore 3
+
+check_max_z:
+// 6. Compare z (reg 2) with max (reg 4): if (z - max > 0) max = z
+iload 2
+iload 4
+isub
+ifgt update_max_z
+ldc 0
+ifeq print_output
+
+update_max_z:
+iload 2
+istore 4
+
+print_output:
+// 7. Output minimum and maximum
+iload 3
+print
+iload 4
+print

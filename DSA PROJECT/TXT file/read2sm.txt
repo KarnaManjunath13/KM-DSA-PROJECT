@@ -1,0 +1,5 @@
+read2sm
+print
+print
+print
+print

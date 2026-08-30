@@ -1,0 +1,7 @@
+read
+read
+read
+read
+print2
+print
+print

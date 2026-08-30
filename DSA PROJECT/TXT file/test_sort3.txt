@@ -1,0 +1,28 @@
+// =======================================================================
+// Extended 3-Element Sort Operations Bytecode Test
+// Demonstrates: sort3up and sort3down
+// =======================================================================
+
+// Test 1: sort3up (ascending order, smallest at bottom)
+// Stack pushes: 2 (bottom), 1 (middle), 3 (top)
+ldc 2
+ldc 1
+ldc 3
+sort3up
+// Stack is now: 1 (bottom), 2 (middle), 3 (top)
+// Note: printing top-to-bottom pops 3, then 2, then 1
+print
+print
+print
+
+// Test 2: sort3down (descending order, largest at bottom)
+// Stack pushes: 2 (bottom), 1 (middle), 3 (top)
+ldc 2
+ldc 1
+ldc 3
+sort3down
+// Stack is now: 3 (bottom), 2 (middle), 1 (top)
+// Printing top-to-bottom pops 1, then 2, then 3
+print
+print
+print

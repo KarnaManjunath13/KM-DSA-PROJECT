@@ -1,0 +1,4 @@
+ldc 5
+ldc 7
+iadd
+print

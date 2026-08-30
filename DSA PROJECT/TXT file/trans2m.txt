@@ -1,0 +1,9 @@
+read
+read
+read
+read
+trans2
+print
+print
+print
+print

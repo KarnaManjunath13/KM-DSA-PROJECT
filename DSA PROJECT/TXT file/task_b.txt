@@ -1,0 +1,468 @@
+// =======================================================================
+// Task B: Read integer n, read n integers, sort in ascending order, print
+// =======================================================================
+// Register allocation:
+//   reg 0: n (count of integers)
+//   reg 1 .. reg 5: array elements (a[0] .. a[n-1])
+//   reg 9: temporary variable for swapping
+
+// 1. Read n
+read
+istore 0
+
+// Check n == 1
+iload 0
+ldc 1
+isub
+ifeq handle_n1
+
+// Check n == 2
+iload 0
+ldc 2
+isub
+ifeq handle_n2
+
+// Check n == 3
+iload 0
+ldc 3
+isub
+ifeq handle_n3
+
+// Check n == 4
+iload 0
+ldc 4
+isub
+ifeq handle_n4
+
+// Check n == 5
+iload 0
+ldc 5
+isub
+ifeq handle_n5
+
+// Default: if n not handled, exit
+ldc 0
+ifeq end_program
+
+// -----------------------------------------------------------------------
+// n = 1: Read 1 element and print
+// -----------------------------------------------------------------------
+handle_n1:
+read
+istore 1
+iload 1
+print
+ldc 0
+ifeq end_program
+
+// -----------------------------------------------------------------------
+// n = 2: Read 2 elements, sort and print
+// -----------------------------------------------------------------------
+handle_n2:
+read
+istore 1
+read
+istore 2
+
+// Compare reg 1 and reg 2
+iload 1
+iload 2
+isub
+ifgt swap_2_1_2
+ldc 0
+ifeq print_n2
+
+swap_2_1_2:
+iload 1
+istore 9
+iload 2
+istore 1
+iload 9
+istore 2
+
+print_n2:
+iload 1
+print
+iload 2
+print
+ldc 0
+ifeq end_program
+
+// -----------------------------------------------------------------------
+// n = 3: Read 3 elements, bubble sort and print
+// -----------------------------------------------------------------------
+handle_n3:
+read
+istore 1
+read
+istore 2
+read
+istore 3
+
+// Pass 1: Compare (reg 1, reg 2)
+iload 1
+iload 2
+isub
+ifgt swap_3_1_2_a
+ldc 0
+ifeq check_3_2_3_a
+
+swap_3_1_2_a:
+iload 1
+istore 9
+iload 2
+istore 1
+iload 9
+istore 2
+
+check_3_2_3_a:
+// Pass 1: Compare (reg 2, reg 3)
+iload 2
+iload 3
+isub
+ifgt swap_3_2_3_a
+ldc 0
+ifeq check_3_1_2_b
+
+swap_3_2_3_a:
+iload 2
+istore 9
+iload 3
+istore 2
+iload 9
+istore 3
+
+check_3_1_2_b:
+// Pass 2: Compare (reg 1, reg 2)
+iload 1
+iload 2
+isub
+ifgt swap_3_1_2_b
+ldc 0
+ifeq print_n3
+
+swap_3_1_2_b:
+iload 1
+istore 9
+iload 2
+istore 1
+iload 9
+istore 2
+
+print_n3:
+iload 1
+print
+iload 2
+print
+iload 3
+print
+ldc 0
+ifeq end_program
+
+// -----------------------------------------------------------------------
+// n = 4: Read 4 elements, bubble sort and print
+// -----------------------------------------------------------------------
+handle_n4:
+read
+istore 1
+read
+istore 2
+read
+istore 3
+read
+istore 4
+
+// Pass 1: (1, 2)
+iload 1
+iload 2
+isub
+ifgt swap_4_1_2_a
+ldc 0
+ifeq check_4_2_3_a
+
+swap_4_1_2_a:
+iload 1
+istore 9
+iload 2
+istore 1
+iload 9
+istore 2
+
+check_4_2_3_a:
+// Pass 1: (2, 3)
+iload 2
+iload 3
+isub
+ifgt swap_4_2_3_a
+ldc 0
+ifeq check_4_3_4_a
+
+swap_4_2_3_a:
+iload 2
+istore 9
+iload 3
+istore 2
+iload 9
+istore 3
+
+check_4_3_4_a:
+// Pass 1: (3, 4)
+iload 3
+iload 4
+isub
+ifgt swap_4_3_4_a
+ldc 0
+ifeq check_4_1_2_b
+
+swap_4_3_4_a:
+iload 3
+istore 9
+iload 4
+istore 3
+iload 9
+istore 4
+
+check_4_1_2_b:
+// Pass 2: (1, 2)
+iload 1
+iload 2
+isub
+ifgt swap_4_1_2_b
+ldc 0
+ifeq check_4_2_3_b
+
+swap_4_1_2_b:
+iload 1
+istore 9
+iload 2
+istore 1
+iload 9
+istore 2
+
+check_4_2_3_b:
+// Pass 2: (2, 3)
+iload 2
+iload 3
+isub
+ifgt swap_4_2_3_b
+ldc 0
+ifeq check_4_1_2_c
+
+swap_4_2_3_b:
+iload 2
+istore 9
+iload 3
+istore 2
+iload 9
+istore 3
+
+check_4_1_2_c:
+// Pass 3: (1, 2)
+iload 1
+iload 2
+isub
+ifgt swap_4_1_2_c
+ldc 0
+ifeq print_n4
+
+swap_4_1_2_c:
+iload 1
+istore 9
+iload 2
+istore 1
+iload 9
+istore 2
+
+print_n4:
+iload 1
+print
+iload 2
+print
+iload 3
+print
+iload 4
+print
+ldc 0
+ifeq end_program
+
+// -----------------------------------------------------------------------
+// n = 5: Read 5 elements, bubble sort and print
+// -----------------------------------------------------------------------
+handle_n5:
+read
+istore 1
+read
+istore 2
+read
+istore 3
+read
+istore 4
+read
+istore 5
+
+// Pass 1: (1,2), (2,3), (3,4), (4,5)
+iload 1
+iload 2
+isub
+ifgt s5_1_2_a
+ldc 0
+ifeq c5_2_3_a
+s5_1_2_a:
+iload 1
+istore 9
+iload 2
+istore 1
+iload 9
+istore 2
+
+c5_2_3_a:
+iload 2
+iload 3
+isub
+ifgt s5_2_3_a
+ldc 0
+ifeq c5_3_4_a
+s5_2_3_a:
+iload 2
+istore 9
+iload 3
+istore 2
+iload 9
+istore 3
+
+c5_3_4_a:
+iload 3
+iload 4
+isub
+ifgt s5_3_4_a
+ldc 0
+ifeq c5_4_5_a
+s5_3_4_a:
+iload 3
+istore 9
+iload 4
+istore 3
+iload 9
+istore 4
+
+c5_4_5_a:
+iload 4
+iload 5
+isub
+ifgt s5_4_5_a
+ldc 0
+ifeq c5_1_2_b
+s5_4_5_a:
+iload 4
+istore 9
+iload 5
+istore 4
+iload 9
+istore 5
+
+// Pass 2: (1,2), (2,3), (3,4)
+c5_1_2_b:
+iload 1
+iload 2
+isub
+ifgt s5_1_2_b
+ldc 0
+ifeq c5_2_3_b
+s5_1_2_b:
+iload 1
+istore 9
+iload 2
+istore 1
+iload 9
+istore 2
+
+c5_2_3_b:
+iload 2
+iload 3
+isub
+ifgt s5_2_3_b
+ldc 0
+ifeq c5_3_4_b
+s5_2_3_b:
+iload 2
+istore 9
+iload 3
+istore 2
+iload 9
+istore 3
+
+c5_3_4_b:
+iload 3
+iload 4
+isub
+ifgt s5_3_4_b
+ldc 0
+ifeq c5_1_2_c
+s5_3_4_b:
+iload 3
+istore 9
+iload 4
+istore 3
+iload 9
+istore 4
+
+// Pass 3: (1,2), (2,3)
+c5_1_2_c:
+iload 1
+iload 2
+isub
+ifgt s5_1_2_c
+ldc 0
+ifeq c5_2_3_c
+s5_1_2_c:
+iload 1
+istore 9
+iload 2
+istore 1
+iload 9
+istore 2
+
+c5_2_3_c:
+iload 2
+iload 3
+isub
+ifgt s5_2_3_c
+ldc 0
+ifeq c5_1_2_d
+s5_2_3_c:
+iload 2
+istore 9
+iload 3
+istore 2
+iload 9
+istore 3
+
+// Pass 4: (1,2)
+c5_1_2_d:
+iload 1
+iload 2
+isub
+ifgt s5_1_2_d
+ldc 0
+ifeq print_n5
+s5_1_2_d:
+iload 1
+istore 9
+iload 2
+istore 1
+iload 9
+istore 2
+
+print_n5:
+iload 1
+print
+iload 2
+print
+iload 3
+print
+iload 4
+print
+iload 5
+print
+
+end_program:

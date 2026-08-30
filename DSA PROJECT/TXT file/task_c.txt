@@ -1,0 +1,64 @@
+// =======================================================================
+// Task C: Read two 2x2 matrices (a11, a12, a21, a22) and (b11, b12, b21, b22)
+//         Compute their sum matrix C = A + B and print in the same order.
+// =======================================================================
+// Register allocation (fits within 10 registers):
+//   Matrix A: reg 0 (a11), reg 1 (a12), reg 2 (a21), reg 3 (a22)
+//   Matrix B: reg 4 (b11), reg 5 (b12), reg 6 (b21), reg 7 (b22)
+//   Results : reg 8, reg 9
+
+// 1. Read Matrix A elements (a11, a12, a21, a22)
+read
+istore 0
+read
+istore 1
+read
+istore 2
+read
+istore 3
+
+// 2. Read Matrix B elements (b11, b12, b21, b22)
+read
+istore 4
+read
+istore 5
+read
+istore 6
+read
+istore 7
+
+// 3. Compute c11 = a11 + b11
+iload 0
+iload 4
+iadd
+istore 8
+
+// 4. Compute c12 = a12 + b12
+iload 1
+iload 5
+iadd
+istore 9
+
+// 5. Output c11 and c12
+iload 8
+print
+iload 9
+print
+
+// 6. Compute c21 = a21 + b21
+iload 2
+iload 6
+iadd
+istore 8
+
+// 7. Compute c22 = a22 + b22
+iload 3
+iload 7
+iadd
+istore 9
+
+// 8. Output c21 and c22
+iload 8
+print
+iload 9
+print

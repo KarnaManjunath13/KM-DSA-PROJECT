@@ -1,0 +1,6 @@
+read 
+read
+read
+read
+det2m
+print
